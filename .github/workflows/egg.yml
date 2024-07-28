@@ -1,4 +1,9 @@
-on: push
+name: 打包和发布
+
+on: [push]
+
+permissions:
+  contents: write
 
 jobs:
   npm-build:
@@ -12,3 +17,8 @@ jobs:
         run: |
           npm install
           npm run build
+
+      - name: 部署到git上面
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist # The folder the action should deploy.
