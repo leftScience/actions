@@ -11,7 +11,7 @@ jobs:
       - name: 读取仓库内容
         uses: actions/checkout@v4
 
-      - name: 登录dockerhub
+      - name: 登录dockerhub 再次测试
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -21,4 +21,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: user/app:latest
+          tags: leftScience/actions:latest
