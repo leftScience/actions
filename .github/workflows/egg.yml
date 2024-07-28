@@ -20,8 +20,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
+          context: .
           push: true
           tags: leftScience/actions:latest
-          extra-host: |
-            docker.io:8.8.8.8
-            index.docker.io:8.8.8.8
+          add-hosts: |
+            docker:8.8.8.8
