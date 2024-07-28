@@ -1,8 +1,10 @@
 on: push
 
 jobs:
-  jobs1:
+  npm-build:
     runs-on: ubuntu-latest
     steps:
       - run: pwd
-      - run: ls
+      - run: npm --version
+      - run: npm install
+      - run: npm run build
