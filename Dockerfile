@@ -3,12 +3,14 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY ./* /app
+COPY . /app
 
 # 设置 node 阿里镜像
 RUN npm config set registry https://registry.npmmirror.com
 
-RUN npm install
+RUN ls -a
+
+RUN npm install && npm run build
 
 EXPOSE 5173
 
