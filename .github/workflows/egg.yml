@@ -2,9 +2,6 @@ name: 打包和发布
 
 on: [push]
 
-permissions:
-  contents: write
-
 jobs:
   npm-build:
     name: 项目打包
@@ -13,12 +10,15 @@ jobs:
     steps:
       - name: 读取仓库内容
         uses: actions/checkout@v4
-      - name: 安装依赖 执行打包命令
-        run: |
-          npm install
-          npm run build
 
-      - name: 部署到git上面
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: 登录dockerhub
+        uses: docker/login-action@v3
         with:
-          folder: dist # The folder the action should deploy.
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: user/app:latest
