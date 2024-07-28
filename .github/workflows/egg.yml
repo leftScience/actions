@@ -11,4 +11,4 @@ jobs:
       - name: 安装依赖 执行打包命令
         run: |
           npm install
-          run: npm run build
+          npm run build
